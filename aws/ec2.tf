@@ -1,6 +1,5 @@
 # 
-# Mohamed Sahad K P
-#
+# Author : Mohamed Sahad K P
 # EC2 Instance (API Server)
 #
 
@@ -11,13 +10,12 @@ provider "aws" {
 
 # Variable
 variable "project_name" {
-   default     = "salesboost"
+   default     = "<project_name>"
 }
 
 variable "project_env" {
-   default     = "dev"
+   default     = "<project_env>"
 }
-
 
 # Data
 data "aws_ami" "ubuntu" {

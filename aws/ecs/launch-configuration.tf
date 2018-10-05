@@ -1,13 +1,13 @@
-resource "aws_launch_configuration" "ecs-launch-configuration" {
-    name                        = "ecs-launch-configuration"
+resource "aws_launch_configuration" "tf_lc" {
+    name                        = "${var.project_name}-${var.project_env}-lc"
     image_id                    = "ami-fad25980"
     instance_type               = "t2.xlarge"
     iam_instance_profile        = "${aws_iam_instance_profile.ecs-instance-profile.id}"
 
     root_block_device {
-      volume_type = "standard"
-      volume_size = 100
-      delete_on_termination = true
+      volume_type           = "gp2"
+      volume_size           = "16"
+      delete_on_termination = "true"
     }
 
     lifecycle {

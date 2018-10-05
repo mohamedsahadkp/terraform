@@ -1,18 +1,18 @@
-resource "aws_alb" "ecs-load-balancer" {
-    name                = "ecs-load-balancer"
+resource "aws_alb" "tf_alb" {
+    name                = "${var.project_name}-${var.project_env}-alb"
     security_groups     = ["${aws_security_group.test_public_sg.id}"]
-    subnets             = ["${aws_subnet.test_public_sn_01.id}", "${aws_subnet.test_public_sn_02.id}"]
+    subnets             = ["${aws_subnet.tf_public_sn_01.id}", "${aws_subnet.tf_public_sn_02.id}"]
 
     tags {
-      Name = "ecs-load-balancer"
+      Name = "${var.project_name}-${var.project_env}-alb"
     }
 }
 
-resource "aws_alb_target_group" "ecs-target-group" {
-    name                = "ecs-target-group"
+resource "aws_alb_target_group" "tf_tg" {
+    name                = "${var.project_name}-${var.project_env}-tg"
     port                = "80"
     protocol            = "HTTP"
-    vpc_id              = "${aws_vpc.test_vpc.id}"
+    vpc_id              = "${aws_vpc.tf_vpc.id}"
 
     health_check {
         healthy_threshold   = "5"
@@ -26,17 +26,17 @@ resource "aws_alb_target_group" "ecs-target-group" {
     }
 
     tags {
-      Name = "ecs-target-group"
+      Name = "${var.project_name}-${var.project_env}-tg"
     }
 }
 
-resource "aws_alb_listener" "alb-listener" {
-    load_balancer_arn = "${aws_alb.ecs-load-balancer.arn}"
+resource "aws_alb_listener" "tf_alb_listener" {
+    load_balancer_arn = "${aws_alb.tf_alb.arn}"
     port              = "80"
     protocol          = "HTTP"
 
     default_action {
-        target_group_arn = "${aws_alb_target_group.ecs-target-group.arn}"
+        target_group_arn = "${aws_alb_target_group.tf_tg.arn}"
         type             = "forward"
     }
 }
