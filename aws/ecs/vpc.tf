@@ -86,10 +86,10 @@ resource "aws_route_table_association" "tf_public_sn_rt_02_assn" {
 
 
 # ECS Instance Security group
-resource "aws_security_group" "darisni_academy_uat_public_sg" {
-  name = "darisni_academy_uat_public_sg"
+resource "aws_security_group" "project_dar_public_sg" {
+  name = "project_dar_public_sg"
   description = "Test public access security group"
-  vpc_id = "${aws_vpc.darisni_academy_uat_vpc.id}"
+  vpc_id = "${aws_vpc.project_dar_vpc.id}"
 
   ingress {
     from_port = 22
@@ -120,8 +120,8 @@ resource "aws_security_group" "darisni_academy_uat_public_sg" {
     to_port = 0
     protocol = "tcp"
     cidr_blocks = [
-      "${var.darisni_academy_uat_public_01_cidr}",
-      "${var.darisni_academy_uat_public_02_cidr}"]
+      "${var.project_dar_public_01_cidr}",
+      "${var.project_dar_public_02_cidr}"]
   }
 
   egress {
@@ -134,6 +134,6 @@ resource "aws_security_group" "darisni_academy_uat_public_sg" {
   }
 
   tags {
-    Name = "darisni_academy_uat_public_sg"
+    Name = "project_dar_public_sg"
   }
 }
