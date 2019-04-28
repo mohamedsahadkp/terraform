@@ -7,6 +7,7 @@ resource "aws_launch_configuration" "autoscale_launch" {
               #!/bin/bash
               sudo apt-get -y update
               sudo apt-get -y install nginx
+              
               EOF
   lifecycle {
     create_before_destroy = true
