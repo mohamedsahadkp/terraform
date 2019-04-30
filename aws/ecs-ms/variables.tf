@@ -5,8 +5,8 @@ variable "aws_region" {
 }
 
 variable "project_name" {
-  description = "maphabit"
-  default = "maphabit"
+  description = "project-name"
+  default = "project-name"
 }
 
 variable "project_env" {
