@@ -1,9 +1,9 @@
 resource "aws_ecs_service" "tf_ecs_service" {
   name            = "${var.project_name}-${var.microservices_name}-${var.project_environment}-service"
-  cluster         = "${var.ecs_cluster_id}"
   task_definition = "${aws_ecs_task_definition.tf_ecs_task_definition.arn}"
-  desired_count   = "2"
+  cluster         = "${var.ecs_cluster_id}"
   launch_type     = "FARGATE"
+  desired_count   = "${var.desired_tasks}"
 
   network_configuration {
     security_groups  = ["${aws_security_group.tf_ecs_service_sg.id}"]
@@ -17,7 +17,5 @@ resource "aws_ecs_service" "tf_ecs_service" {
     container_port   = "${var.container_port}"
   }
 
-  depends_on = [
-    "aws_alb_target_group.tf_alb_tg",
-  ]
+  depends_on = ["aws_alb_target_group.tf_alb_tg"]
 }

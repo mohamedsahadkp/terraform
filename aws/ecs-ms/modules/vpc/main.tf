@@ -22,7 +22,7 @@ resource "aws_internet_gateway" "tf_ig" {
 resource "aws_subnet" "tf_public_sn_01" {
   vpc_id = "${aws_vpc.tf_vpc.id}"
   cidr_block = "${var.public_01_cidr}"
-  availability_zone = "${data.aws_availability_zones.available.names[0]}"
+  availability_zone = "${var.availability_zone_1a}"
   tags {
     Name = "${var.project_name}-sn-01"
   }
@@ -32,7 +32,7 @@ resource "aws_subnet" "tf_public_sn_01" {
 resource "aws_subnet" "tf_public_sn_02" {
   vpc_id = "${aws_vpc.tf_vpc.id}"
   cidr_block = "${var.public_02_cidr}"
-  availability_zone = "${data.aws_availability_zones.available.names[1]}"
+  availability_zone = "${var.availability_zone_1b}"
   tags {
     Name = "${var.project_name}-sn-02"
   }

@@ -8,6 +8,16 @@ variable "project_environment" {
 }
 
 ########################### VPC Config ################################
+variable "availability_zone_1a" {
+  description = "availability_zone_1a"
+  default = "us-east-1a"
+}
+
+variable "availability_zone_1b" {
+  description = "availability_zone_1b"
+  default = "us-east-1b"
+}
+
 variable "network_cidr" {
   description = "IP addressing for Network"
   default = "10.0.0.0/16"

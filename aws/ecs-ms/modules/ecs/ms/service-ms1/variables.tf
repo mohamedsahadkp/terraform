@@ -38,8 +38,12 @@ variable "alb_port" {
   description = "application loadbalancer arn"
   default = "80"
 }
-########################### MS Config ################################
 
+########################### MS Config ################################
+variable "desired_tasks" {
+  description = "desired_tasks"
+  default = "2"
+}
 
 variable "health_check_path" {
   description = "health check path"

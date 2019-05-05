@@ -16,4 +16,9 @@ resource "aws_security_group" "tf_alb_sg" {
     to_port     = 0
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  tags {
+    Project = "${var.project_name}"
+    Environment = "${var.project_environment}"
+  }
 }
