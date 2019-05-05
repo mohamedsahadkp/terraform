@@ -7,7 +7,7 @@ resource "aws_ecs_service" "tf_ecs_service" {
 
   network_configuration {
     security_groups  = ["${aws_security_group.tf_ecs_service_sg.id}"]
-    subnets          = ["${var.subnet_sn_01}", "${var.subnet_sn_02}"]
+    subnets          = ["${var.public_subnet_1a}", "${var.public_subnet_1b}"]
     assign_public_ip = true
   }
 

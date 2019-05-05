@@ -1,6 +1,11 @@
+########################### AWS Config ################################
+variable "aws_region" {
+  description = "aws region"
+}
+
 ########################### App Config ################################
 variable "project_name" {
-  description = "project-name"
+  description = "project_name"
 }
 
 variable "project_environment" {

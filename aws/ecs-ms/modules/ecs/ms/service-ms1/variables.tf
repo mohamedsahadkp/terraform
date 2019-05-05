@@ -21,12 +21,12 @@ variable "vpc_id" {
   description = "vpc id"
 }
 
-variable "subnet_sn_01" {
-  description = "subnet_sn_01"
+variable "public_subnet_1a" {
+  description = "public_subnet_1a"
 }
 
-variable "subnet_sn_02" {
-  description = "subnet_sn_02"
+variable "public_subnet_1b" {
+  description = "public_subnet_1b"
 }
 
 ########################### ALB ################################
