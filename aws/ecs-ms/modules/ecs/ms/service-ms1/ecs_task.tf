@@ -2,17 +2,17 @@ data "template_file" "tf_ecs_td_container_definitions" {
   template = "${file("${path.module}/ecs_task.json")}"
 
   vars {
-    image               = "${aws_ecr_repository.tf_ecr_repository.repository_url}:${var.project_env}"
-    container_name      = "${var.project_name}-${var.project_ms_name}-${var.project_env}-container"
+    image               = "${aws_ecr_repository.tf_ecr_repository.repository_url}:${var.project_environment}"
+    container_name      = "${var.project_name}-${var.microservices_name}-${var.project_environment}-container"
     container_port      = "${var.container_port}"
-    log_group           = "${var.project_name}-${var.project_ms_name}-${var.project_env}-log"
+    log_group           = "${aws_cloudwatch_log_group.tf_cloudwatch_log_group.name}"
     task_cpu            = "${var.task_cpu}"
     task_memory         = "${var.task_memory}"
   }
 }
 
 resource "aws_ecs_task_definition" "tf_ecs_task_definition" {
-  family                   = "${var.project_name}-${var.project_ms_name}-${var.project_env}-family"
+  family                   = "${var.project_name}-${var.microservices_name}-${var.project_environment}-family"
   container_definitions    = "${data.template_file.tf_ecs_td_container_definitions.rendered}"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"

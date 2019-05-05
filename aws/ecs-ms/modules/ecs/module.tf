@@ -6,7 +6,10 @@ module "service-ms1" {
   vpc_id                = "${var.vpc_id}"
   public_subnet_1a      = "${var.public_subnet_1a}"
   public_subnet_1b      = "${var.public_subnet_1b}"
-  alb_arn               = "${var.public_subnet_1b}"
+
+  ecs_cluster_id        = "${aws_ecs_cluster.tf_ecs_cluster.id}"
+
+  alb_arn               = "${aws_alb.tf_alb.arn}"
 
 
   app_sg_id           = "${module.vpc.app_sg_id}"

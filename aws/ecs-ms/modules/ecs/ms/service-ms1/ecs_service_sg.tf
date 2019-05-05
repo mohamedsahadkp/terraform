@@ -1,5 +1,5 @@
 resource "aws_security_group" "tf_ecs_service_sg" {
-  name        = "${var.project_name}-${var.project_ms_name}-${var.project_env}-ecs-service-sg"
+  name        = "${var.project_name}-${var.microservices_name}-${var.project_environment}-ecs-service-sg"
   vpc_id      = "${var.vpc_id}"
 
   ingress {
