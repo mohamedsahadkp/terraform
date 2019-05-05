@@ -1,19 +1,16 @@
 ########################### App Config ################################
-variable "aws_region" {
-  description = "AWS Region"
-  default     = "us-east-1"
-}
-
 variable "project_name" {
-  description = "project-name"
-  default = "project-name"
+  description = "project_name"
 }
 
-variable "project_env" {
-  description = "development"
-  default = "development"
+variable "project_environment" {
+  description = "project_environment"
 }
 
+variable "microservices_name" {
+  description = "microservices_name"
+  default = "project-ms-name"
+}
 ########################### ECS Cluster ################################
 variable "ecs_cluster_id" {
   description = "ecs cluster id"
@@ -41,12 +38,8 @@ variable "alb_port" {
   description = "application loadbalancer arn"
   default = "80"
 }
-
 ########################### MS Config ################################
-variable "project_ms_name" {
-  description = "project-ms-name"
-  default = "project-ms-name"
-}
+
 
 variable "health_check_path" {
   description = "health check path"

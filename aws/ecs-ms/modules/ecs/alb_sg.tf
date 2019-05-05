@@ -1,7 +1,7 @@
 resource "aws_security_group" "tf_alb_sg" {
-  name        = "${var.project_name}-${var.project_env}-alb-sg"
+  name        = "${var.project_name}-${var.project_environment}-alb-sg"
   description = "Controls access to the ALB"
-  vpc_id      = "${aws_vpc.tf_vpc.id}"
+  vpc_id      = "${var.vpc_id}"
 
   ingress {
     from_port = 80
