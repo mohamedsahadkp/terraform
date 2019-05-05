@@ -1,8 +1,7 @@
 module "vpc" {
   source         = "./modules/vpc"
-  cluster_name   = "${var.cluster_name}"
-  alb_port       = "${var.alb_port}"
-  container_port = "${var.container_port}"
+  project_name   = "${var.project_name}"
+  project_environment   = "${var.project_environment}"
 }
 
 module "ecs" {
