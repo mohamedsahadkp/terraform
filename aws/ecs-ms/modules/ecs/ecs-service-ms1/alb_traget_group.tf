@@ -1,8 +1,8 @@
 resource "aws_alb_target_group" "tf_alb_tg" {
-  name        = "${var.project_name}-${var.project_env}-${var.project_ms_name}-tg"
-  port        = 80
+  name        = "${var.project_name}-${var.project_ms_name}-${var.project_env}-tg"
+  port        = "${var.container_port}"
   protocol    = "HTTP"
-  vpc_id      = "${aws_vpc.tf_vpc.id}"
+  vpc_id      = "${var.vpc_id}"
   target_type = "ip"
 
   health_check {
@@ -17,12 +17,12 @@ resource "aws_alb_target_group" "tf_alb_tg" {
 }
 
 resource "aws_alb_listener" "tf_alb_listener" {
-  load_balancer_arn = "${aws_alb.tf_alb.id}"
-  port              = "3000"
+  load_balancer_arn = "${var.alb_arn}"
+  port              = "${var.alb_port}"
   protocol          = "HTTP"
 
   default_action {
-    target_group_arn = "${aws_alb_target_group.tf_alb_tg.id}"
+    target_group_arn = "${aws_alb_target_group.tf_alb_tg.arn}"
     type             = "forward"
   }
 }
