@@ -13,3 +13,7 @@ module "ecs" {
   public_subnet_1a      = "${module.vpc.public_subnet_1a}"
   public_subnet_1b      = "${module.vpc.public_subnet_1b}"
 }
+
+module "rds" {
+  source              = "./modules/rds"
+}

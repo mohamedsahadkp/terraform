@@ -1,5 +1,5 @@
 resource "aws_alb_target_group" "tf_alb_tg" {
-  name        = "${var.project_name}-${var.project_ms_name}-${var.project_env}-tg"
+  name        = "${var.project_name}-${var.microservices_name}-${var.project_environment}-tg"
   port        = "${var.container_port}"
   protocol    = "HTTP"
   vpc_id      = "${var.vpc_id}"

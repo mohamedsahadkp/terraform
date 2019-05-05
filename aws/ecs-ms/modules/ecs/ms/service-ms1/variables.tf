@@ -9,7 +9,7 @@ variable "project_environment" {
 
 variable "microservices_name" {
   description = "microservices_name"
-  default = "project-ms-name"
+  default = "m1"
 }
 ########################### ECS Cluster ################################
 variable "ecs_cluster_id" {
