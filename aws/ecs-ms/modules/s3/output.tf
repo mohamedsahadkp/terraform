@@ -1,7 +1,7 @@
-output "object_bucket" {
-  value = "${aws_s3_bucket.aws_s3_bucket.id}"
+output "files_bucket" {
+  value = "${aws_s3_bucket.tf_s3_bucket_files.id}"
 }
 
 output "website_bucket" {
-  value = "${aws_s3_bucket.tf_public_sn_01.id}"
+  value = "${aws_s3_bucket.tf_s3_bucket_website.id}"
 }

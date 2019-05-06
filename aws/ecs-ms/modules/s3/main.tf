@@ -1,5 +1,5 @@
-resource "aws_s3_bucket" "aws_s3_bucket" {
-  bucket = "${var.project_name}-${var.project_environment}-bucket"
+resource "aws_s3_bucket" "tf_s3_bucket_files" {
+  bucket = "${var.project_name}-${var.project_environment}-files"
   acl    = "private"
 
   tags {
@@ -8,7 +8,7 @@ resource "aws_s3_bucket" "aws_s3_bucket" {
   }   
 }
 
-resource "aws_s3_bucket" "tf_s3_website" {
+resource "aws_s3_bucket" "tf_s3_bucket_website" {
   bucket = "${var.project_name}-${var.project_environment}-website"
   acl    = "public-read"
   policy = <<EOF

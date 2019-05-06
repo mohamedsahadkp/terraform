@@ -19,3 +19,22 @@ variable "public_subnet_1a" {
 variable "public_subnet_1b" {
   description = "vpc public subnet 1b"
 }
+
+########################### RDS Config ################################
+variable "rds_port" {
+  description = "rds_port"
+  default = 5432
+}
+
+variable "rds_username" {
+  description = "admin"
+}
+
+variable "rds_password" {
+  description = "admin12345"
+}
+
+variable "rds_storage" {
+  description = "rds_storage"
+  default = 5
+}
