@@ -30,13 +30,8 @@ variable "public_subnet_1b" {
 }
 
 ########################### ALB ################################
-variable "alb_arn" {
-  description = "application loadbalancer arn"
-}
-
-variable "alb_port" {
-  description = "application loadbalancer arn"
-  default = "80"
+variable "alb_listener" {
+  description = "application loadbalancer listener arn"
 }
 
 ########################### MS Config ################################

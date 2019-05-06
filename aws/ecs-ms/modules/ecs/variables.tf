@@ -19,3 +19,9 @@ variable "public_subnet_1a" {
 variable "public_subnet_1b" {
   description = "vpc public subnet 1b"
 }
+
+########################### ALB Config ################################
+variable "alb_port" {
+  description = "application loadbalancer arn"
+  default = 80
+}

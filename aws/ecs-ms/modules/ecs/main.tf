@@ -38,3 +38,7 @@ resource "aws_alb" "tf_alb" {
   security_groups = ["${aws_security_group.tf_alb_sg.id}"]
 }
 
+resource "aws_alb_listener" "tf_alb_listener" {
+  load_balancer_arn = "${aws_alb.tf_alb.arn}"
+  port              = "${var.alb_port}"
+}

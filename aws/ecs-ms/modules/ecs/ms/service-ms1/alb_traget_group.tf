@@ -17,7 +17,7 @@ resource "aws_alb_target_group" "tf_alb_tg_ms1" {
 }
 
 resource "aws_lb_listener_rule" "tf_alb_listener_rule_ms1" {
-  listener_arn = "${var.alb_arn}"
+  listener_arn = "${var.alb_listener}"
   priority     = 100
 
   action {
