@@ -1,6 +1,6 @@
 resource "aws_db_subnet_group" "tf_db_subnet_group" {
   name        = "${var.project_name}-${var.project_environment}-db-subnet-group"
-  subnet_ids  = ["${var.public_subnet_1a}", "${var.public_subnet_1a}"]
+  subnet_ids  = ["${var.public_subnet_1a}", "${var.public_subnet_1b}"]
 }
 
 resource "aws_security_group" "tf_security_group" {
@@ -27,19 +27,33 @@ resource "aws_security_group" "tf_security_group" {
   }
 }
 
+# resource "aws_db_parameter_group" "tf_db_parameter_group" {
+#   name   = "rds-pg"
+#   family = "default.postgres9.6"
+
+#   parameter {
+#     name  = "character_set_server"
+#     value = "utf8"
+#   }
+
+#   parameter {
+#     name  = "character_set_client"
+#     value = "utf8"
+#   }
+# }
+
 resource "aws_db_instance" "tf_db_instance" {
   depends_on             = ["aws_security_group.tf_security_group"]
 
+  identifier              = "db-instance-${var.project_name}-${var.project_environment}"
   allocated_storage      = "${var.rds_storage}"
   storage_type           = "gp2"
   engine                 = "postgres"
   engine_version         = "9.5.4"
   instance_class         = "db.t2.micro"
-  name                   = "${var.project_name}-${var.project_environment}-db"
+  name                   = "${var.project_name}_${var.project_environment}_db"
   username               = "${var.rds_username}"
   password               =  "${var.rds_password}"
-  parameter_group_name   = "default.mysql5.7"
-  publicly_accessible      = true
   backup_retention_period  = 7
   port                     = "${var.rds_port}"
   multi_az                 = false

@@ -4,7 +4,6 @@ resource "aws_ecs_service" "tf_ecs_service_ms2" {
   cluster         = "${var.ecs_cluster_id}"
   launch_type     = "FARGATE"
   desired_count   = "${var.desired_tasks}"
-
   network_configuration {
     security_groups  = ["${aws_security_group.tf_ecs_service_ms2_sg.id}"]
     subnets          = ["${var.public_subnet_1a}", "${var.public_subnet_1b}"]
@@ -16,6 +15,4 @@ resource "aws_ecs_service" "tf_ecs_service_ms2" {
     container_name   = "${var.project_name}-${var.microservices_name}-${var.project_environment}-container"
     container_port   = "${var.container_port}"
   }
-
-  depends_on = ["aws_alb_target_group.tf_alb_tg_ms2"]
 }

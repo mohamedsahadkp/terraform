@@ -9,7 +9,7 @@ module "service-ms1" {
 
   ecs_cluster_id        = "${aws_ecs_cluster.tf_ecs_cluster.id}"
 
-  alb_arn               = "${aws_alb.tf_alb.arn}"
+  alb_listener          = "${aws_alb_listener.tf_alb_listener.arn}"
 }
 
 module "service-ms2" {
@@ -23,5 +23,5 @@ module "service-ms2" {
 
   ecs_cluster_id        = "${aws_ecs_cluster.tf_ecs_cluster.id}"
 
-  alb_arn               = "${aws_alb.tf_alb.arn}"
+  alb_listener          = "${aws_alb_listener.tf_alb_listener.arn}"
 }

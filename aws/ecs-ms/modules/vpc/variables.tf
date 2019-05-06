@@ -15,7 +15,7 @@ variable "availability_zone_1a" {
 
 variable "availability_zone_1b" {
   description = "availability_zone_1b"
-  default = "us-east-1b"
+  default = "us-east-1c"
 }
 
 variable "network_cidr" {

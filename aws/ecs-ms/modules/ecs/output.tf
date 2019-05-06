@@ -7,7 +7,7 @@ output "alb_arn" {
 }
 
 output "alb_listener" {
-  value = "${aws_alb.tf_alb_listener.arn}"
+  value = "${aws_alb_listener.tf_alb_listener.arn}"
 }
 
 output "alb_dns_name" {
