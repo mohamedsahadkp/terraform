@@ -1,4 +1,4 @@
-resource "aws_security_group" "tf_ecs_service_sg" {
+resource "aws_security_group" "tf_ecs_service_ms1_sg" {
   name        = "${var.project_name}-${var.microservices_name}-${var.project_environment}-ecs-service-sg"
   vpc_id      = "${var.vpc_id}"
 

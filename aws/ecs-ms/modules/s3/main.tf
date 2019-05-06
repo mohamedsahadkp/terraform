@@ -1,3 +1,11 @@
+data "template_file" "tf_s3_public_policy" {
+  template = "${file("${path.module}/public-read.json")}"
+
+  vars {
+    tf_s3_bucket_website = "${var.project_name}-${var.project_environment}-website"
+  }
+}
+
 resource "aws_s3_bucket" "tf_s3_bucket_files" {
   bucket = "${var.project_name}-${var.project_environment}-files"
   acl    = "private"
@@ -11,22 +19,7 @@ resource "aws_s3_bucket" "tf_s3_bucket_files" {
 resource "aws_s3_bucket" "tf_s3_bucket_website" {
   bucket = "${var.project_name}-${var.project_environment}-website"
   acl    = "public-read"
-  policy = <<EOF
-  {
-    "Version": "2008-10-17",
-    "Statement": [
-        {
-        "Sid": "PublicReadForGetBucketObjects",
-        "Effect": "Allow",
-        "Principal": {
-            "AWS": "*"
-        },
-        "Action": "s3:GetObject",
-        "Resource": "arn:aws:s3:::${var.project_name}-${var.project_environment}-website/*"
-        }
-    ]
-  }
-  EOF
+  policy = "${data.template_file.tf_s3_public_policy.rendered}"
 
   website {
     index_document = "index.html"

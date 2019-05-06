@@ -1,4 +1,4 @@
-resource "aws_alb_target_group" "tf_alb_tg" {
+resource "aws_alb_target_group" "tf_alb_tg_ms1" {
   name        = "${var.project_name}-${var.microservices_name}-${var.project_environment}-tg"
   port        = "${var.container_port}"
   protocol    = "HTTP"
@@ -16,13 +16,16 @@ resource "aws_alb_target_group" "tf_alb_tg" {
   }
 }
 
-resource "aws_alb_listener" "tf_alb_listener" {
-  load_balancer_arn = "${var.alb_arn}"
-  port              = "${var.alb_port}"
-  protocol          = "HTTP"
+resource "aws_lb_listener_rule" "tf_alb_listener_rule_ms1" {
+  listener_arn = "${var.alb_arn}"
+  priority     = 100
 
-  default_action {
-    target_group_arn = "${aws_alb_target_group.tf_alb_tg.arn}"
+  action {
     type             = "forward"
+    target_group_arn = "${aws_alb_target_group.tf_alb_tg_ms1.arn}"
+  }
+   condition {
+    field  = "path-pattern"
+    values = ["/ms1/*"]
   }
 }
