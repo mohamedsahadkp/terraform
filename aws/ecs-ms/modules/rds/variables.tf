@@ -27,11 +27,13 @@ variable "rds_port" {
 }
 
 variable "rds_username" {
-  description = "admin"
+  description = "rds_username"
+  default = "admin"
 }
 
 variable "rds_password" {
-  description = "admin12345"
+  description = "rds_password"
+  default = "admin12345"
 }
 
 variable "rds_storage" {

@@ -30,7 +30,7 @@ resource "aws_security_group" "tf_security_group" {
 resource "aws_db_instance" "tf_db_instance" {
   depends_on             = ["aws_security_group.tf_security_group"]
 
-  allocated_storage      = ${var.rds_storage}
+  allocated_storage      = "${var.rds_storage}"
   storage_type           = "gp2"
   engine                 = "postgres"
   engine_version         = "9.5.4"
@@ -41,7 +41,7 @@ resource "aws_db_instance" "tf_db_instance" {
   parameter_group_name   = "default.mysql5.7"
   publicly_accessible      = true
   backup_retention_period  = 7
-  port                     = ${var.rds_port}
+  port                     = "${var.rds_port}"
   multi_az                 = false
 
   vpc_security_group_ids = ["${aws_security_group.tf_security_group.id}"]
