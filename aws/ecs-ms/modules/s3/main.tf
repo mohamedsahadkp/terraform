@@ -11,9 +11,8 @@ resource "aws_s3_bucket" "aws_s3_bucket" {
 resource "aws_s3_bucket" "tf_s3_website" {
   bucket = "${var.project_name}-${var.project_environment}-website"
   acl    = "public-read"
-
-    policy = <<EOF
-    {
+  policy = <<EOF
+  {
     "Version": "2008-10-17",
     "Statement": [
         {
@@ -26,8 +25,8 @@ resource "aws_s3_bucket" "tf_s3_website" {
         "Resource": "arn:aws:s3:::${var.project_name}-${var.project_environment}-website/*"
         }
     ]
-    }
-    EOF
+  }
+  EOF
 
   website {
     index_document = "index.html"

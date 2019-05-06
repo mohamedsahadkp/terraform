@@ -24,3 +24,10 @@ module "rds" {
   public_subnet_1a      = "${module.vpc.public_subnet_1a}"
   public_subnet_1b      = "${module.vpc.public_subnet_1b}"
 }
+
+module "s3" {
+  source              = "./modules/s3"
+
+  project_name          = "${var.project_name}"
+  project_environment   = "${var.project_environment}"
+}
