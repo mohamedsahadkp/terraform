@@ -1,28 +1,24 @@
 locals {
   default_page                = "index.html"
-  origin_id                   = "${aws_s3_bucket.webapp_bucket.bucket_regional_domain_name}-origin-id-app"
+  origin_id                   = "${aws_s3_bucket.bucket.bucket_regional_domain_name}-origin-id-app"
   default_cache_behavior_path = ""
   ordered_cache_behavior_path = "/path0"
 }
 
-resource "aws_cloudfront_origin_access_identity" "cloudfront_access_identity" {
-  comment = "${var.project_name}-${var.project_environment}-origin-access-identity-app"
-}
-
 resource "aws_cloudfront_distribution" "cloudfront" {
   origin {
-    domain_name = "${aws_s3_bucket.webapp_bucket.bucket_regional_domain_name}"
+    domain_name = aws_s3_bucket.bucket.bucket_regional_domain_name
     // origin_path = ""
     origin_id = local.origin_id
     s3_origin_config {
-      origin_access_identity = "${aws_cloudfront_origin_access_identity.webapp_cloudfront_origin_access_identity.cloudfront_access_identity_path}"
+      origin_access_identity = aws_cloudfront_origin_access_identity.cloudfront_access_identity.cloudfront_access_identity_path
     }
   }
 
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = local.default_page
-  comment             = "${var.project_name}-${var.project_environment}-webapp"
+  comment             = "${var.project_name}-${var.project_environment}-app"
 
   default_cache_behavior {
     allowed_methods = ["GET", "HEAD", "OPTIONS"]

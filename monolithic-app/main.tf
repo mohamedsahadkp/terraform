@@ -3,7 +3,7 @@ provider "aws" {
   region = var.aws_region
 }
 
-# Terraform state store (AWS S3)
+# Terraform State & Lock Information
 terraform {
   backend "s3" {
     encrypt = true

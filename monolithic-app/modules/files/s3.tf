@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "bucket" {
-  bucket = "${var.project_name}-${var.project_environment}-app"
+  bucket = "${var.project_name}-${var.project_environment}-files"
   acl    = "private"
 
   versioning {
@@ -7,7 +7,7 @@ resource "aws_s3_bucket" "bucket" {
   }
 
   tags = merge(
-    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-app")
+    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-files")
   )
 }
 

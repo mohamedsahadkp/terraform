@@ -23,7 +23,7 @@ variable "database_config" {
 }
 # Network
 variable "network_config" {
-  decription = "Network Config Map"
+  description = "Network Config Map"
 }
 # WebApp
 variable "app_config" {

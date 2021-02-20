@@ -1,4 +1,4 @@
-resource "aws_instance" "application_server" {
+resource "aws_instance" "api_server" {
   count         = var.instance_count
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.ec2.instance_type
@@ -14,6 +14,6 @@ resource "aws_instance" "application_server" {
   //ebs_block_device {}
 
   tags = merge(
-    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-application-server-${count.index}")
+    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-api-server-${count.index}")
   )
 }

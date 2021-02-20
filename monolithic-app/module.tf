@@ -3,7 +3,7 @@
 #   project_name        = var.project_name
 #   project_environment = var.project_environment
 #   vpc                 = var.vpc
-#   ec2                 = var.ec2_config
+#   ec2                 = var.api_config.ec2
 #   resource_tags       = var.resource_tags
 # }
 
@@ -24,5 +24,11 @@ module "app" {
   app_config          = var.app_config
 }
 
-
+module "files" {
+  source              = "./modules/files"
+  project_name        = var.project_name
+  project_environment = var.project_environment
+  resource_tags       = var.resource_tags
+  files_config        = var.files_config
+}
 

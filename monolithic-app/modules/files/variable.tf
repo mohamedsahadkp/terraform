@@ -7,6 +7,6 @@ variable "project_environment" {
 variable "resource_tags" {
   description = "Resource Tags"
 }
-variable "app_config" {
+variable "files_config" {
   description = "WebApp Config"
 }

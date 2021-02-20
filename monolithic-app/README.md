@@ -9,6 +9,7 @@ terraform show
 
 ######
 
-terraform init -backend-config=./config/tfstate.conf
-terraform apply -var-file=./config/environment.tfvars
-terraform destroy -var-file=./config/environment.tfvars
+terraform init -backend-config=./config/develop/tfstate.conf
+terraform plan -var-file=./config/develop/environment.tfvars
+terraform apply -var-file=./config/develop/environment.tfvars
+terraform destroy -var-file=./config/develop/environment.tfvars

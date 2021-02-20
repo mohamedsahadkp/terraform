@@ -1,6 +1,6 @@
-resource "aws_security_group" "application_server_security_group" {
-  name        = "${var.project_name}-${var.project_environment}-application-server-sg"
-  description = "${var.project_name}-${var.project_environment}-application-server-sg"
+resource "aws_security_group" "api_server_security_group" {
+  name        = "${var.project_name}-${var.project_environment}-api-server-sg"
+  description = "${var.project_name}-${var.project_environment}-api-server-sg"
   vpc_id      = var.vpc
 
   ingress {
@@ -25,6 +25,6 @@ resource "aws_security_group" "application_server_security_group" {
   }
 
   tags = merge(
-    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-application-server-sg")
+    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-api-server-sg")
   )
 }
