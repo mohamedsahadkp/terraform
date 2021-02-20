@@ -3,7 +3,7 @@
 #   project_name        = var.project_name
 #   project_environment = var.project_environment
 #   vpc                 = var.vpc
-#   ec2                 = var.api_config.ec2
+#   ec2                 = var.api.ec2
 #   resource_tags       = var.resource_tags
 # }
 
@@ -12,23 +12,25 @@
 #   project_name        = var.project_name
 #   project_environment = var.project_environment
 #   vpc                 = var.vpc
-#   database            = var.rds_config
+#   database            = var.rds
 #   resource_tags       = var.resource_tags
 # }
 
+module "network" {
+  source  = "./modules/network"
+  project = var.project
+  network = var.network
+}
+
 module "app" {
-  source              = "./modules/app"
-  project_name        = var.project_name
-  project_environment = var.project_environment
-  resource_tags       = var.resource_tags
-  app_config          = var.app_config
+  source  = "./modules/app"
+  project = var.project
+  app     = var.app
 }
 
 module "files" {
-  source              = "./modules/files"
-  project_name        = var.project_name
-  project_environment = var.project_environment
-  resource_tags       = var.resource_tags
-  files_config        = var.files_config
+  source  = "./modules/files"
+  project = var.project
+  files   = var.files
 }
 

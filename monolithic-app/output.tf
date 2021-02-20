@@ -17,12 +17,18 @@
 #   value = module.ec2.ec2_public_dns_2
 # }
 
-# // S3
-# output "webapp_s3_bucket" {
-#   value = module.webapp.webapp_s3_bucket
-# }
+// App Module
+output "app_s3_bucket" {
+  value = module.app.s3_bucket
+}
+output "app_cloudfront_domain_name" {
+  value = module.app.cloudfront_domain_name
+}
 
-# // CloudFront
-# output "webapp_cloudfront_domain_name" {
-#   value = module.webapp.webapp_cloudfront_domain_name
-# }
+// Files Module
+output "files_s3_bucket" {
+  value = module.files.s3_bucket
+}
+output "files_cloudfront_domain_name" {
+  value = module.files.cloudfront_domain_name
+}

@@ -1,11 +1,10 @@
-
 # AWS VPC Subnet
 resource "aws_subnet" "tf_subnet_public_one" {
   vpc_id            = aws_vpc.tf_vpc.id
-  cidr_block        = var.vpc.subnet_one
+  cidr_block        = var.network.vpc.subnet_one
   availability_zone = data.aws_availability_zones.tf_availability_zones.names[0]
   tags = merge(
-    local.common_tags, map(local.name, "${var.project_name}-${var.project_environment}-subnet-public-one")
+    var.project.resource_tags, map(local.name, "${var.project.name}-${var.project.environment}-subnet-public-one")
   )
 }
 
@@ -17,7 +16,7 @@ resource "aws_route_table" "aws_route_table_public_one" {
     gateway_id = aws_internet_gateway.tf_internet_gateway.id
   }
   tags = merge(
-    local.common_tags, map(local.name, "${var.project_name}-${var.project_environment}-route-table-public-one")
+    var.project.resource_tags, map(local.name, "${var.project.name}-${var.project.environment}-route-table-public-one")
   )
 }
 

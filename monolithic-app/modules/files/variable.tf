@@ -1,12 +1,6 @@
-variable "project_name" {
-  description = "Project Name"
+variable "project" {
+  description = "Project Config Maps"
 }
-variable "project_environment" {
-  description = "Project Environment"
-}
-variable "resource_tags" {
-  description = "Resource Tags"
-}
-variable "files_config" {
-  description = "WebApp Config"
+variable "files" {
+  description = "Files Config Maps"
 }

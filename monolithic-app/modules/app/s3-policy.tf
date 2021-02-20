@@ -1,5 +1,5 @@
 resource "aws_cloudfront_origin_access_identity" "cloudfront_access_identity" {
-  comment = "${var.project_name}-${var.project_environment}-origin-access-identity-app"
+  comment = "${var.project.name}-${var.project.environment}-origin-access-identity-app"
 }
 
 data "aws_iam_policy_document" "policy_document" {

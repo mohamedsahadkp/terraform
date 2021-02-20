@@ -1,6 +1,6 @@
 # AWS
 provider "aws" {
-  region = var.aws_region
+  region = var.project.aws_region
 }
 
 # Terraform State & Lock Information

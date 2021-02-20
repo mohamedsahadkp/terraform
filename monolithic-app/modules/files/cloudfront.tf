@@ -18,7 +18,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = local.default_page
-  comment             = "${var.project_name}-${var.project_environment}-files"
+  comment             = "${var.project.name}-${var.project.environment}-files"
 
   default_cache_behavior {
     allowed_methods = ["GET", "HEAD", "OPTIONS"]
@@ -99,7 +99,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
   }
 
   tags = merge(
-    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-files")
+    var.project.resource_tags, map("Name", "${var.project.name}-${var.project.environment}-files")
   )
 }
 
