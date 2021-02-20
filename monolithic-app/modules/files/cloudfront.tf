@@ -1,13 +1,15 @@
 locals {
-  default_page = "index.html"
-  origin_id    = "${aws_s3_bucket.webapp_bucket.bucket_regional_domain_name}-origin-id-webapp"
+  default_page                = "index.html"
+  origin_id                   = "${aws_s3_bucket.webapp_bucket.bucket_regional_domain_name}-origin-id-app"
+  default_cache_behavior_path = ""
+  ordered_cache_behavior_path = "/path0"
 }
 
-resource "aws_cloudfront_origin_access_identity" "webapp_cloudfront_origin_access_identity" {
-  comment = "${var.project_name}-${var.project_environment}-origin-access-identity-webapp"
+resource "aws_cloudfront_origin_access_identity" "cloudfront_access_identity" {
+  comment = "${var.project_name}-${var.project_environment}-origin-access-identity-app"
 }
 
-resource "aws_cloudfront_distribution" "webapp_cloudfront_distribution" {
+resource "aws_cloudfront_distribution" "cloudfront" {
   origin {
     domain_name = "${aws_s3_bucket.webapp_bucket.bucket_regional_domain_name}"
     // origin_path = ""
@@ -42,6 +44,37 @@ resource "aws_cloudfront_distribution" "webapp_cloudfront_distribution" {
     compress = true
   }
 
+  # Cache behavior with precedence 0
+  # ordered_cache_behavior {
+  #   path_pattern    = local.ordered_cache_behavior_path
+  #   allowed_methods = ["GET", "HEAD"]
+  #   cached_methods  = ["GET", "HEAD"]
+
+  #   target_origin_id = local.origin_id
+
+  #   forwarded_values {
+  #     # Add the headers required
+  #     headers      = ["CloudFront-Viewer-Country", "Access-Control-Expose-Headers"]
+  #     query_string = false
+  #     cookies {
+  #       forward = "none"
+  #     }
+  #   }
+  #   min_ttl                = 0
+  #   max_ttl                = 86400
+  #   default_ttl            = 3600
+  #   viewer_protocol_policy = "allow-all"
+
+  #   compress = true
+
+  #   //Lambda function information
+  #   lambda_function_association {
+  #     event_type   = "origin-response"
+  #     include_body = false
+  #     lambda_arn   = "lambda_function_arn"
+  #   }
+  # }
+
   restrictions {
     geo_restriction {
       restriction_type = "none"
@@ -58,6 +91,7 @@ resource "aws_cloudfront_distribution" "webapp_cloudfront_distribution" {
     response_code      = 200
     response_page_path = "/${local.default_page}"
   }
+
   custom_error_response {
     error_code         = 404
     response_code      = 200
@@ -65,7 +99,7 @@ resource "aws_cloudfront_distribution" "webapp_cloudfront_distribution" {
   }
 
   tags = merge(
-    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-webapp-cdn")
+    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-app")
   )
 }
 

@@ -1,5 +1,5 @@
-resource "aws_s3_bucket" "webapp_bucket" {
-  bucket = "${var.project_name}-${var.project_environment}-webapp-bucket"
+resource "aws_s3_bucket" "bucket" {
+  bucket = "${var.project_name}-${var.project_environment}-app"
   acl    = "private"
 
   versioning {
@@ -7,12 +7,12 @@ resource "aws_s3_bucket" "webapp_bucket" {
   }
 
   tags = merge(
-    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-webapp-bucket")
+    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-app")
   )
 }
 
-resource "aws_s3_bucket_public_access_block" "webapp_bucket_public_access_block" {
-  bucket = aws_s3_bucket.webapp_bucket.id
+resource "aws_s3_bucket_public_access_block" "bucket_public_access_block" {
+  bucket = aws_s3_bucket.bucket.id
 
   block_public_acls       = true
   block_public_policy     = true
