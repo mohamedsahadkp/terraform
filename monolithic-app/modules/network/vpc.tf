@@ -1,4 +1,4 @@
-data "aws_availability_zones" "tf_availability_zones" {
+data "aws_availability_zones" "availability_zones" {
   state = "available"
 }
 
@@ -10,7 +10,8 @@ locals {
 resource "aws_vpc" "vpc" {
   enable_dns_support   = true
   enable_dns_hostnames = true
-  cidr_block           = var.network.vpc.cidr
+  cidr_block           = var.network.vpc.root_cidr
+
   tags = merge(
     var.project.resource_tags, map(local.name, "${var.project.name}-${var.project.environment}-vpc")
   )
@@ -18,6 +19,7 @@ resource "aws_vpc" "vpc" {
 
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.vpc.id
+
   tags = merge(
     var.project.resource_tags, map(local.name, "${var.project.name}-${var.project.environment}-igw")
   )

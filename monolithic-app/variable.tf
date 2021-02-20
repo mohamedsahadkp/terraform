@@ -2,26 +2,13 @@
 variable "project" {
   description = "Project Config Maps"
 }
-
-# variable "project_environment" {
-#   description = "Project Environment"
-# }
-# variable "aws_region" {
-#   description = "AWS Region"
-# }
-
-# // AWS Resource Tags
-# variable "resource_tags" {
-#   description = "Resource Tags Map"
-# }
-
 # API
 variable "api" {
-  description = "ec2 Config Map"
+  description = "API Config Map"
 }
 # Database
 variable "database" {
-  description = "RDS Config Map"
+  description = "Datebase Config Map"
 }
 # Network
 variable "network" {
