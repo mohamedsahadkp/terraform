@@ -1,13 +1,13 @@
 locals {
   default_page = "index.html"
-  origin_id    = "${aws_s3_bucket.webapp_bucket.bucket_regional_domain_name}-origin-id-webapp"
+  origin_id    = "${aws_s3_bucket.webapp_bucket.bucket_regional_domain_name}-origin-id-app"
 }
 
-resource "aws_cloudfront_origin_access_identity" "webapp_cloudfront_origin_access_identity" {
-  comment = "${var.project_name}-${var.project_environment}-origin-access-identity-webapp"
+resource "aws_cloudfront_origin_access_identity" "cloudfront_access_identity" {
+  comment = "${var.project_name}-${var.project_environment}-origin-access-identity-app"
 }
 
-resource "aws_cloudfront_distribution" "webapp_cloudfront_distribution" {
+resource "aws_cloudfront_distribution" "cloudfront" {
   origin {
     domain_name = "${aws_s3_bucket.webapp_bucket.bucket_regional_domain_name}"
     // origin_path = ""
@@ -58,6 +58,7 @@ resource "aws_cloudfront_distribution" "webapp_cloudfront_distribution" {
     response_code      = 200
     response_page_path = "/${local.default_page}"
   }
+
   custom_error_response {
     error_code         = 404
     response_code      = 200
@@ -65,7 +66,7 @@ resource "aws_cloudfront_distribution" "webapp_cloudfront_distribution" {
   }
 
   tags = merge(
-    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-webapp-cdn")
+    var.resource_tags, map("Name", "${var.project_name}-${var.project_environment}-app")
   )
 }
 

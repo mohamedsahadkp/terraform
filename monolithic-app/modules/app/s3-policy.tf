@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "webapp_policy_document" {
+data "aws_iam_policy_document" "policy_document" {
   statement {
     actions   = ["s3:GetObject"]
     resources = ["${aws_s3_bucket.webapp_bucket.arn}/*"]
@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "webapp_policy_document" {
   }
 }
 
-resource "aws_s3_bucket_policy" "tf_s3_bucket_polic_s3_webapps" {
-  bucket = "${aws_s3_bucket.webapp_bucket.id}"
-  policy = "${data.aws_iam_policy_document.webapp_policy_document.json}"
+resource "aws_s3_bucket_policy" "s3_bucket_policy" {
+  bucket = "${aws_s3_bucket.bucket.id}"
+  policy = "${data.aws_iam_policy_document.policy_document.json}"
 }

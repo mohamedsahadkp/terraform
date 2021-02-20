@@ -21,6 +21,7 @@ module "app" {
   project_name        = var.project_name
   project_environment = var.project_environment
   resource_tags       = var.resource_tags
+  app_config          = var.app_config
 }
 
 
