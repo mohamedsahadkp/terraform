@@ -1,11 +1,14 @@
-# module "ec2" {
-#   source              = "./modules/ec2"
-#   project_name        = var.project_name
-#   project_environment = var.project_environment
-#   vpc                 = var.vpc
-#   ec2                 = var.api.ec2
-#   resource_tags       = var.resource_tags
-# }
+module "network" {
+  source  = "./modules/network"
+  project = var.project
+  network = var.network
+}
+
+module "api" {
+  source  = "./modules/api"
+  project = var.project
+  api     = var.api
+}
 
 # module "rds" {
 #   source              = "./modules/rds"
@@ -15,12 +18,6 @@
 #   database            = var.rds
 #   resource_tags       = var.resource_tags
 # }
-
-module "network" {
-  source  = "./modules/network"
-  project = var.project
-  network = var.network
-}
 
 module "app" {
   source  = "./modules/app"

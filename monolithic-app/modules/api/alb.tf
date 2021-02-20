@@ -1,15 +1,19 @@
-data "aws_ami" "ubuntu" {
-  most_recent = true
+resource "aws_lb" "alb" {
+  name               = "${var.project.name}-${var.project.environment}-api-server-alb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.alb_security_group.id]
+  subnets            = aws_subnet.public.*.id
 
-  filter {
-    name   = "name"
-    values = [var.ec2.ami.image]
-  }
+  enable_deletion_protection = true
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
+  # access_logs {
+  #   bucket  = aws_s3_bucket.<bucket-name>.bucket
+  #   prefix  = "api-server-alb"
+  #   enabled = true
+  # }
 
-  owners = [var.ec2.ami.owner] # Canonical
+  tags = merge(
+    var.project.resource_tags, map("Name", "${var.project.name}-${var.project.environment}-api-server-alb")
+  )
 }

@@ -3,7 +3,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = [var.ec2.ami.image]
+    values = [var.api.ec2.ami.image]
   }
 
   filter {
@@ -11,5 +11,5 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners = [var.ec2.ami.owner] # Canonical
+  owners = [var.api.ec2.ami.owner] # Canonical
 }
