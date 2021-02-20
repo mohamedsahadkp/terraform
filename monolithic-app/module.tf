@@ -4,19 +4,16 @@ module "network" {
   network = var.network
 }
 
-module "api" {
-  source  = "./modules/api"
-  project = var.project
-  api     = var.api
-}
+# module "api" {
+#   source  = "./modules/api"
+#   project = var.project
+#   api     = var.api
+# }
 
-# module "rds" {
-#   source              = "./modules/rds"
-#   project_name        = var.project_name
-#   project_environment = var.project_environment
-#   vpc                 = var.vpc
-#   database            = var.rds
-#   resource_tags       = var.resource_tags
+# module "database" {
+#   source   = "./modules/rds"
+#   project  = var.project
+#   database = var.database
 # }
 
 module "app" {

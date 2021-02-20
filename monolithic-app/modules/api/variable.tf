@@ -4,8 +4,3 @@ variable "project" {
 variable "api" {
   description = "API Config Maps"
 }
-
-
-
-
-
