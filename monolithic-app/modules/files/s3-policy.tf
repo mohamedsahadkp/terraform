@@ -9,7 +9,7 @@ data "aws_iam_policy_document" "policy_document" {
 
     principals {
       type        = "AWS"
-      identifiers = ["${aws_cloudfront_origin_access_identity.cloudfront_access_identity.iam_arn}"]
+      identifiers = [aws_cloudfront_origin_access_identity.cloudfront_access_identity.iam_arn]
     }
   }
 }

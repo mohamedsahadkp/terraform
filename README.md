@@ -13,3 +13,5 @@ terraform init -backend-config=./config/develop/tfstate.conf
 terraform plan -var-file=./config/develop/environment.tfvars
 terraform apply -var-file=./config/develop/environment.tfvars
 terraform destroy -var-file=./config/develop/environment.tfvars
+
+/home/mohamed/Downloads/terraform init -backend-config=./config/develop/tfstate.conf

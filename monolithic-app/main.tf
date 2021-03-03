@@ -3,7 +3,7 @@ provider "aws" {
   region = var.project.aws_region
 }
 
-#Github
+# Github
 provider "github" {
 }
 
