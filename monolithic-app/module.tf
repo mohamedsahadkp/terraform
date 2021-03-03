@@ -16,6 +16,12 @@ module "network" {
 #   database = var.database
 # }
 
+# module "domain" {
+#   source   = "./modules/rds"
+#   project  = var.project
+#   database = var.database
+# }
+
 module "app" {
   source  = "./modules/app"
   project = var.project

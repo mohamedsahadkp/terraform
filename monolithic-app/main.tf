@@ -7,6 +7,10 @@ provider "aws" {
 provider "github" {
 }
 
+# Cloudflare
+provider "cloudflare" {
+}
+
 # Terraform State & Lock Information
 terraform {
   backend "s3" {
