@@ -1,22 +1,16 @@
-// Common Config
-variable "project_name" {
-  description = "Project Name"
+variable "project" {
+  type        = map
+  default     = {}
+  description = "Project Config Maps"
 }
-variable "project_environment" {
-  description = "Project Environment"
+variable "domain" {
+  type        = map
+  default     = {}
+  description = "Domain Config Map"
 }
-variable "resource_tags" {
-  description = "Resource Tags"
+variable "record_list" {
+  type        = map
+  default     = ["api", "web"]
+  description = "Record list Config Map"
 }
-
-variable "ec2" {
-  description = "ec2 Config"
-}
-variable "vpc" {
-  description = "VPC Id"
-}
-
-
-
-
 

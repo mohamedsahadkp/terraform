@@ -1,10 +1,13 @@
 variable "project" {
+  type        = map
+  default     = {}
   description = "Project Config Maps"
 }
 variable "network" {
-  description = "Network Config Maps"
+  type        = map
+  default     = {}
+  description = "Network Config Map"
 }
-
 
 
 

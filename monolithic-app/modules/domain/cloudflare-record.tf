@@ -4,4 +4,6 @@ resource "cloudflare_record" "foobar" {
   value   = "192.168.0.11"
   type    = "A"
   ttl     = 3600
+
+  count = 4
 }
