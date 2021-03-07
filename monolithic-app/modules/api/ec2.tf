@@ -41,7 +41,8 @@ resource "aws_instance" "api_server" {
   # }
 
   # provisioner "local-exec" {
-  #   command = "echo ${aws_instance.api_server[count.index].private_ip}"
+  #   command    = "echo ${aws_instance.api_server[count.index].private_ip}"
+  #   on_failure = continue
   # }
 
   # provisioner "remote-exec" {
