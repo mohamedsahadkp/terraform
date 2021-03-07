@@ -10,7 +10,7 @@ locals {
 resource "aws_vpc" "vpc" {
   enable_dns_support   = true
   enable_dns_hostnames = true
-  cidr_block           = var.network.vpc.root_cidr
+  cidr_block           = var.network.vpc.root.cidr
 
   tags = merge(
     var.project.resource_tags, map(local.name, "${var.project.name}-${var.project.environment}-vpc")

@@ -1,20 +1,23 @@
+variable "api_security_group_list" {
+  type        = list
+  default     = [443, 80]
+  description = "(optional) describe your variable"
+}
+
 resource "aws_security_group" "api_server_security_group" {
   name        = "${var.project.name}-${var.project.environment}-api-server-sg"
   description = "${var.project.name}-${var.project.environment}-api-server-sg"
-  vpc_id      = var.vpc
+  vpc_id      = var.vpc.id
 
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  dynamic "ingress" {
+    for_each = var.api_security_group_list
+    iterator = port
+    content {
+      from_port   = port.value
+      to_port     = port.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
   }
 
   egress {

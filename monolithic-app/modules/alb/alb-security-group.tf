@@ -1,5 +1,5 @@
 variable "alb_security_group_list" {
-  type    = list
+  type    = list(number)
   default = [443, 80]
 }
 
@@ -10,9 +10,10 @@ resource "aws_security_group" "alb_security_group" {
 
   dynamic "ingress" {
     for_each = var.alb_security_group_list
+    iterator = port
     content {
-      from_port   = ingress.value
-      to_port     = ingress.value
+      from_port   = port.value
+      to_port     = port.value
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
     }

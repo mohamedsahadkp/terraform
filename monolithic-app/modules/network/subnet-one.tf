@@ -1,8 +1,9 @@
 # AWS VPC Subnet
 resource "aws_subnet" "subnet_public_one" {
-  vpc_id            = aws_vpc.vpc.id
-  cidr_block        = var.network.vpc.subnet_one_cidr
-  availability_zone = data.aws_availability_zones.availability_zones.names[0]
+  vpc_id                  = aws_vpc.vpc.id
+  cidr_block              = var.network.vpc.subnet_one.cidr
+  availability_zone       = data.aws_availability_zones.availability_zones.names[0]
+  map_public_ip_on_launch = var.network.vpc.subnet_one.map_public_ip_on_launch
 
   tags = merge(
     var.project.resource_tags, map(local.name, "${var.project.name}-${var.project.environment}-subnet-public-one")

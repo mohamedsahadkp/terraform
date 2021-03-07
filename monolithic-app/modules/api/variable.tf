@@ -4,3 +4,7 @@ variable "project" {
 variable "api" {
   description = "API Config Maps"
 }
+variable "vpc" {
+  description = "API Config Maps"
+}
+
