@@ -33,17 +33,17 @@ resource "aws_instance" "api_server" {
     var.project.resource_tags, map("Name", "${var.project.name}-${var.project.environment}-api-server-${count.index}")
   )
 
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "sudo apt install nginx",
-  #     "sudo service nginx start"
-  #   ]
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt install nginx",
+      "sudo service nginx start"
+    ]
 
-  #   connection {
-  #     type        = "ssh"
-  #     user        = "ubuntu"
-  #     host        = self.public_dns
-  #     private_key = file("./key-name.pem")
-  #   }
-  # }
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      host        = self.public_ip
+      private_key = file(var.api.ec2.private_key_file_path)
+    }
+  }
 }
