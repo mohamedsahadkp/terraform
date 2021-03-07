@@ -14,8 +14,8 @@ resource "aws_instance" "api_server" {
   instance_type = var.api.ec2.instance_type
   key_name      = aws_key_pair.api_server_key.key_name
 
-  //security_groups = "" // EC2-Classic and default VPC only 
-  //vpc_security_group_ids = "" //
+  // security_groups = ""
+  // vpc_security_group_ids = ""
 
   network_interface {
     network_interface_id = aws_network_interface.api_server_network_interface[count.index].id
@@ -33,17 +33,29 @@ resource "aws_instance" "api_server" {
     var.project.resource_tags, map("Name", "${var.project.name}-${var.project.environment}-api-server-${count.index}")
   )
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo apt install nginx",
-      "sudo service nginx start"
-    ]
+  # provisioner "remote-exec" {
+  #   inline = [
+  #     "sudo apt-get install -y nginx",
+  #     "sudo service nginx start",
+  #   ]
+  # }
 
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      host        = self.public_ip
-      private_key = file(var.api.ec2.private_key_file_path)
-    }
-  }
+  # provisioner "local-exec" {
+  #   command = "echo ${aws_instance.api_server[count.index].private_ip}"
+  # }
+
+  # provisioner "remote-exec" {
+  #   when = destory
+  #   inline = [
+  #     "sudo apt-get purge -y nginx nginx-common",
+  #     "sudo apt-get autoremove",
+  #   ]
+  # }
+
+  # connection {
+  #   type        = "ssh"
+  #   user        = "ubuntu"
+  #   host        = self.public_ip
+  #   private_key = file(var.api.ec2.private_key_file_path)
+  # }
 }
