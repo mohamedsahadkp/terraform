@@ -10,9 +10,9 @@
 # }
 
 // API Module 
-output "ec2_public_ips" {
-  value = module.api.public_ips
-}
+# output "ec2_public_ips" {
+#   value = module.api.public_ips
+# }
 
 // App Module
 # output "app_s3_bucket" {

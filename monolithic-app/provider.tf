@@ -18,7 +18,7 @@ terraform {
 
 # AWS
 provider "aws" {
-  region = local.module.project.aws_region
+  region = local.environment.project.aws_region
 }
 
 # Github

@@ -34,21 +34,7 @@
 #   description = "Domain Config Map"
 # }
 
-variable "envi" {
+variable "environment" {
   default     = {}
-  description = "Domain Config Map"
+  description = "Environment Config Map"
 }
-# variable "qa" {
-#   default     = {}
-#   description = "Domain Config Map"
-# }
-# variable "uat" {
-#   default     = {}
-#   description = "Domain Config Map"
-# }
-# variable "prod" {
-#   default     = {}
-#   description = "Domain Config Map"
-# }
-
-# /home/mohamed/Downloads
