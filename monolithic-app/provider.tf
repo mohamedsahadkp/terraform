@@ -16,3 +16,15 @@ terraform {
   required_version = ">= 0.12"
 }
 
+# AWS
+provider "aws" {
+  region = local.module.project.aws_region
+}
+
+# Github
+provider "github" {
+}
+
+# Cloudflare
+provider "cloudflare" {
+}

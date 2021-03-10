@@ -1,13 +1,17 @@
+locals {
+  module = lookup(var.envi, terraform.workspace)
+}
+
 module "network" {
   source  = "./modules/network"
-  project = var.project
-  network = var.network
+  project = local.module.project
+  network = local.module.network
 }
 
 module "api" {
   source  = "./modules/api"
-  project = var.project
-  api     = var.api
+  project = local.module.project
+  api     = local.module.api
   vpc     = module.network
 }
 
