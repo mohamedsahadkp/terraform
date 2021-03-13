@@ -1,6 +1,6 @@
 resource "aws_network_interface" "api_server_network_interface" {
   subnet_id       = var.vpc.subnet_one_id
-  security_groups = [aws_security_group.api_server_security_group.id]
+  security_groups = [aws_security_group.api_server_security_group2.id]
   count           = var.api.ec2.instance_count // Number of ec2 instance
 
   tags = merge(
@@ -18,8 +18,9 @@ resource "aws_instance" "api_server" {
   // vpc_security_group_ids = ""
 
   network_interface {
-    network_interface_id = aws_network_interface.api_server_network_interface[count.index].id
-    device_index         = 0
+    delete_on_termination = false
+    network_interface_id  = aws_network_interface.api_server_network_interface[count.index].id
+    device_index          = 0
   }
 
   root_block_device {

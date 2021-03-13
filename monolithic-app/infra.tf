@@ -8,12 +8,12 @@ module "network" {
   network = local.environment.network
 }
 
-# module "api" {
-#   source  = "./src/api"
-#   project = local.environment.project
-#   api     = local.environment.api
-#   vpc     = module.network
-# }
+module "api" {
+  source  = "./src/api"
+  project = local.environment.project
+  api     = local.environment.api
+  vpc     = module.network
+}
 
 # module "database" {
 #   source   = "./src/rds"

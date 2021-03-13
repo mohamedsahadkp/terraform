@@ -18,8 +18,20 @@ terraform {
 
 # AWS
 provider "aws" {
-  region = local.environment.project.aws_region
+  region = local.environment.project.aws_region.default
 }
+
+# provider "aws" {
+#   alias  = "virginia"
+#   region = local.environment.project.aws_region.virginia.name
+#   profile = ""
+
+#   assume_role {
+#     role_arn     = "arn:aws:iam::ACCOUNT_ID:role/ROLE_NAME"
+#     session_name = "SESSION_NAME"
+#     external_id  = "EXTERNAL_ID"
+#   }
+# }
 
 # Github
 provider "github" {

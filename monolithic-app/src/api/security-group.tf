@@ -1,4 +1,4 @@
-resource "aws_security_group" "api_server_security_group" {
+resource "aws_security_group" "api_server_security_group2" {
   name        = "${var.project.name}-${var.project.environment}-api-server-sg"
   description = "${var.project.name}-${var.project.environment}-api-server-sg"
   vpc_id      = var.vpc.id
