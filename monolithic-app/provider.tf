@@ -1,9 +1,5 @@
 terraform {
   required_providers {
-    github = {
-      source  = "integrations/github"
-      version = "4.5.0"
-    }
     aws = {
       source  = "hashicorp/aws"
       version = "3.30.0"
@@ -18,10 +14,12 @@ terraform {
 
 # AWS
 provider "aws" {
-  region = local.environment.project.aws_region.default
+  version = "3.30.0"
+  region  = local.environment.project.aws_region.default
 }
 
 # provider "aws" {
+#   version = "3.30.0"
 #   alias  = "virginia"
 #   region = local.environment.project.aws_region.virginia.name
 #   profile = ""
@@ -32,10 +30,6 @@ provider "aws" {
 #     external_id  = "EXTERNAL_ID"
 #   }
 # }
-
-# Github
-provider "github" {
-}
 
 # Cloudflare
 provider "cloudflare" {
